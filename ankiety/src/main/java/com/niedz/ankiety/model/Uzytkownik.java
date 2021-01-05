@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -35,8 +34,24 @@ public class Uzytkownik {
 
     private Boolean isActive;
 
+    // gettery
     public Integer get_id() { return Id; }
 
     public String get_login() { return login; }
+
+    public String get_password() { return password; }
+
+    public String get_mail() { return mail; }
+
+    public Boolean get_active() { return isActive; }
+
+    //settery
+    public void set_login(String login) { this.login = login; }
+
+    public void set_password(String password) { this.password = password; }
+
+    public void set_mail(String mail) { this.mail = mail; }
+
+    public void set_actibe(Boolean active) { this.isActive = active; }
 
 }
