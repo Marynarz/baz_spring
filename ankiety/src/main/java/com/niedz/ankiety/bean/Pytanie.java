@@ -7,38 +7,22 @@ public class Pytanie {
     public Integer numer_pytania;
 
     // setery
-    public void set_id(Integer id){
-        this.id = id;
-    }
+    public void set_id(Integer id){ this.id = id; }
 
-    public void set_opis(String opis){
-        this.opis = opis;
-    }
+    public void set_opis(String opis){ this.opis = opis; }
 
-    public void set_zaznaczone(Boolean zaznaczone){
-        this.zaznaczone = zaznaczone;
-    }
+    public void set_zaznaczone(Boolean zaznaczone){ this.zaznaczone = zaznaczone;  }
 
-    public void set_numer_pytania(Integer numer_pytania){
-        this.numer_pytania = numer_pytania;
-    }
+    public void set_numer_pytania(Integer numer_pytania){ this.numer_pytania = numer_pytania; }
 
     // getery
-    public Integer get_id(){
-        return id;
-    }
+    public Integer get_id(){ return id; }
 
-    public String get_opis(){
-        return opis;
-    }
+    public String get_opis(){ return opis; }
 
-    public Boolean get_zaznaczone(){
-        return zaznaczone;
-    }
+    public Boolean get_zaznaczone(){ return zaznaczone; }
 
-    public Integer get_numer_pytania(){
-        return numer_pytania;
-    }
+    public Integer get_numer_pytania(){ return numer_pytania; }
 
     // konstruktory
     public Pytanie(){
