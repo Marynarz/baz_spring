@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Data
 @Builder
@@ -32,6 +33,9 @@ public class Uzytkownik {
     @Length(min = 5, message = "Min 5 znakow")
     private String password;
 
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private Set<Rola> rola;
+
     private Boolean isActive;
 
     // gettery
@@ -45,6 +49,8 @@ public class Uzytkownik {
 
     public Boolean get_active() { return isActive; }
 
+    public Set<Rola> get_rola() { return rola; }
+
     //settery
     public void set_login(String login) { this.login = login; }
 
@@ -53,5 +59,7 @@ public class Uzytkownik {
     public void set_mail(String mail) { this.mail = mail; }
 
     public void set_actibe(Boolean active) { this.isActive = active; }
+
+    public void set_rola(Set<Rola> rola) { this.rola = rola; }
 
 }
