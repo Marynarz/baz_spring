@@ -12,9 +12,9 @@ import java.util.*;
 
 @Service
 public class SerwisUzytkownika {
-    private Uzytkownicy uzytkownicy;
-    private Role role;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final Uzytkownicy uzytkownicy;
+    private final Role role;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public SerwisUzytkownika(Uzytkownicy uzytkownicy, Role role, BCryptPasswordEncoder bCryptPasswordEncoder) {

@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface Odpowiedzi extends JpaRepository<Odpowiedz, Integer> {
-    Iterable<Odpowiedz> findAllById_pytania(Integer pytanie);
+    Iterable<Odpowiedz> findAllBy_id_pytania(Integer pytanie);
     Optional<Odpowiedz> findById(Integer Id);
 }
