@@ -6,9 +6,11 @@ import com.niedz.ankiety.repository.Role;
 import com.niedz.ankiety.repository.Uzytkownicy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class SerwisUzytkownika {
     private Uzytkownicy uzytkownicy;
     private Role role;
