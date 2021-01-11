@@ -40,5 +40,7 @@ public class Odpowiedz {
 
     public void add_odpowiedz() { this.ilosc_odpowiedzi++; }
 
+    public void set_id_pytania(Integer pId) { this.id_pytania = pId; }
+
     public void zeruj_ilosc_odpowiedzi() { this.ilosc_odpowiedzi = 0; }
 }
