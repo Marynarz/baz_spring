@@ -26,16 +26,16 @@ public class Pytanie {
     private String opis;
 
     // gettery
-    public Integer get_id() { return Id; }
+    public Integer getId() { return Id; }
 
-    public Integer get_id_ankiety() { return id_ankiety; }
+    public Integer getIdAnkiety() { return id_ankiety; }
 
-    public String get_pytanie() { return pytanie; }
+    public String getPytanie() { return pytanie; }
 
-    public String get_opis() { return opis; }
+    public String getOpis() { return opis; }
 
     // settery
-    public void set_pytanie(String pytanie) { this.pytanie = pytanie; }
+    public void setPytanie(String pytanie) { this.pytanie = pytanie; }
 
-    public void set_opis(String opis) { this.opis = opis; }
+    public void setOpis(String opis) { this.opis = opis; }
 }

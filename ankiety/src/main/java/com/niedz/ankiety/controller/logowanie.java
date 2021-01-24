@@ -38,7 +38,7 @@ public class logowanie {
     public ModelAndView dodaj_uzytkownika(@Valid Uzytkownik uzytkownik, BindingResult b_result){
         ModelAndView m_a_v = new ModelAndView();
 
-        if(serwis_uzytkownika.znajdzLogin(uzytkownik.get_login()) != null)
+        if(serwis_uzytkownika.znajdzLogin(uzytkownik.getLogin()) != null)
             b_result.rejectValue("username", null, null);
         if(!b_result.hasErrors()){
             serwis_uzytkownika.zapiszUzytkownika(uzytkownik);
@@ -53,7 +53,7 @@ public class logowanie {
         ModelAndView m_a_v = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Uzytkownik uzytkownik = serwis_uzytkownika.znajdzLogin(auth.getName());
-        m_a_v.addObject("witaj", "Czesc " + uzytkownik.get_login());
+        m_a_v.addObject("witaj", "Czesc " + uzytkownik.getLogin());
         m_a_v.setViewName("main_usr");
         return m_a_v;
     }

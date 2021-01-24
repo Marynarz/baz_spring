@@ -36,18 +36,18 @@ public class SerwisUzytkownika {
     }
 
     public Uzytkownik zapiszUzytkownika(Uzytkownik uzytkownik){
-        uzytkownik.set_password(bCryptPasswordEncoder.encode(uzytkownik.get_password()));
-        uzytkownik.set_actibe(true);
+        uzytkownik.setPassword(bCryptPasswordEncoder.encode(uzytkownik.getPassword()));
+        uzytkownik.setActive(true);
         Rola rola = role.findByRola("main");
-        uzytkownik.set_rola(new HashSet<Rola>(Collections.singletonList(rola)));
+        uzytkownik.setRola(new HashSet<Rola>(Collections.singletonList(rola)));
         return uzytkownicy.save(uzytkownik);
     }
 
     public Uzytkownik aktualizujUzytkownika(Uzytkownik uzytkownik, boolean zmiana_hasla){
         if(zmiana_hasla)
-            uzytkownik.set_password(bCryptPasswordEncoder.encode(uzytkownik.get_password()));
+            uzytkownik.setPassword(bCryptPasswordEncoder.encode(uzytkownik.getPassword()));
         Rola rola = role.findByRola("main");
-        uzytkownik.set_rola(new HashSet<Rola>(Collections.singletonList(rola)));
+        uzytkownik.setRola(new HashSet<Rola>(Collections.singletonList(rola)));
         return uzytkownicy.save(uzytkownik);
     }
 }

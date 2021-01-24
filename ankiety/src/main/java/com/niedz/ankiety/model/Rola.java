@@ -22,7 +22,7 @@ public class Rola {
 
     private String rola;
 
-    public void set_rola(String s){ this.rola = s; }
+    public void setRola(String s){ this.rola = s; }
 
-    public String get_rola(){ return rola; }
+    public String getRola(){ return rola; }
 }

@@ -22,15 +22,17 @@
 </nav>
 <div class="container">
     <div class="row card_deck align-middle">
-        <div class="card">
+        <div th:unless="${#lists.isEmpty(ankiety)}">
+        <div class="card" th:each="ankieta : ${ankiety}"">
             <div class="card-header">
-                <h1 class="h3 mb-3 font-weight-normal" th:utext="${powitanie}"></h1>
+                <p th:text="${polling.tytul}" > </p>
             </div>
             <div class="card-body">
-                <p>Ankiety</p>
+                    <p th:text="${ankieta.id}"> </p>
+                <p th:text="${polling.opis}" > </p>
             </div>
         </div>
-
+        </div>
     </div>
 </div>
 

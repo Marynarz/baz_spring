@@ -25,10 +25,10 @@ public class SerwisDetaleUzytkownika implements UserDetailsService {
         Uzytkownik uzytkownik = serwis_uzytkownika.znajdzLogin(s);
 
         Set<GrantedAuthority> role = new HashSet<>();
-        for(Rola rola: uzytkownik.get_rola())
-            role.add(new SimpleGrantedAuthority(rola.get_rola()));
+        for(Rola rola: uzytkownik.getRola())
+            role.add(new SimpleGrantedAuthority(rola.getRola()));
 
-        return new org.springframework.security.core.userdetails.User(uzytkownik.get_login(),
-                uzytkownik.get_password(), uzytkownik.get_active(), true, true, true,role);
+        return new org.springframework.security.core.userdetails.User(uzytkownik.getLogin(),
+                uzytkownik.getPassword(), uzytkownik.getActive(), true, true, true,role);
     }
 }

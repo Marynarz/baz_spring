@@ -39,27 +39,27 @@ public class Uzytkownik {
     private Boolean isActive;
 
     // gettery
-    public Integer get_id() { return Id; }
+    public Integer getId() { return Id; }
 
-    public String get_login() { return login; }
+    public String getLogin() { return login; }
 
-    public String get_password() { return password; }
+    public String getPassword() { return password; }
 
-    public String get_mail() { return mail; }
+    public String getMail() { return mail; }
 
-    public Boolean get_active() { return isActive; }
+    public Boolean getActive() { return isActive; }
 
-    public Set<Rola> get_rola() { return rola; }
+    public Set<Rola> getRola() { return rola; }
 
     //settery
-    public void set_login(String login) { this.login = login; }
+    public void setLogin(String login) { this.login = login; }
 
-    public void set_password(String password) { this.password = password; }
+    public void setPassword(String password) { this.password = password; }
 
-    public void set_mail(String mail) { this.mail = mail; }
+    public void setMail(String mail) { this.mail = mail; }
 
-    public void set_actibe(Boolean active) { this.isActive = active; }
+    public void setActive(Boolean active) { this.isActive = active; }
 
-    public void set_rola(Set<Rola> rola) { this.rola = rola; }
+    public void setRola(Set<Rola> rola) { this.rola = rola; }
 
 }

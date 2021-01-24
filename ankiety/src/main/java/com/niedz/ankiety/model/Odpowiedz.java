@@ -27,20 +27,20 @@ public class Odpowiedz {
     private Integer ilosc_odpowiedzi = 0;
 
     // gettery
-    public Integer get_id() { return Id; }
+    public Integer getId() { return Id; }
 
-    public Integer get_id_pytania() { return idPytania; }
+    public Integer getIdPytania() { return idPytania; }
 
-    public String get_odpowiedz() { return odpowiedz; }
+    public String getOdpowiedz() { return odpowiedz; }
 
-    public Integer get_ilosc_odpowiedzi() { return ilosc_odpowiedzi; }
+    public Integer getIloscOdpowiedzi() { return ilosc_odpowiedzi; }
 
     // settery
-    public void set_odpowiedz(String odpowiedz) { this.odpowiedz = odpowiedz; }
+    public void setOdpowiedz(String odpowiedz) { this.odpowiedz = odpowiedz; }
 
-    public void add_odpowiedz() { this.ilosc_odpowiedzi++; }
+    public void addOdpowiedz() { this.ilosc_odpowiedzi++; }
 
-    public void set_id_pytania(Integer pId) { this.idPytania = pId; }
+    public void setIdPytania(Integer pId) { this.idPytania = pId; }
 
-    public void zeruj_ilosc_odpowiedzi() { this.ilosc_odpowiedzi = 0; }
+    public void zerujIloscOdpowiedzi() { this.ilosc_odpowiedzi = 0; }
 }

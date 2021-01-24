@@ -16,10 +16,10 @@ public class odpowiadanie {
     @PostMapping(path="/odpowiedzi/dodaj")
     public @ResponseBody String odpowiedz(@RequestParam String odp, @RequestParam Integer pId){
         Odpowiedz odpowiedz = new Odpowiedz();
-        odpowiedz.set_odpowiedz(odp);
-        odpowiedz.set_id_pytania(pId);
-        odpowiedz.zeruj_ilosc_odpowiedzi();
+        odpowiedz.setOdpowiedz(odp);
+        odpowiedz.setIdPytania(pId);
+        odpowiedz.zerujIloscOdpowiedzi();
         serwis_odpowiedzi.odpowiedz(odpowiedz);
-        return "Odpowiedziales: " + odpowiedz.get_odpowiedz();
+        return "Odpowiedziales: " + odpowiedz.getOdpowiedz();
     }
 }

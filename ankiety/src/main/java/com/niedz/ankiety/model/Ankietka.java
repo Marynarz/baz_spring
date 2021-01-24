@@ -28,16 +28,16 @@ public class Ankietka {
 
     // gettery
 
-    private Integer get_id() { return Id; }
+    private Integer getId() { return Id; }
 
-    private Integer get_tworca() { return tworca; }
+    private Integer getTworca() { return tworca; }
 
-    private String get_tytul() { return tytul; }
+    private String getTytul() { return tytul; }
 
-    private String get_opis() { return opis; }
+    private String getOpis() { return opis; }
 
     // settery
-    private void set_tytul(String tytul) { this.tytul = tytul; }
+    private void setTytul(String tytul) { this.tytul = tytul; }
 
-    private void set_opis(String opis) { this.opis = opis; }
+    private void setOpis(String opis) { this.opis = opis; }
 }

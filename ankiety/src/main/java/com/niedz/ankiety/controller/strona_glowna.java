@@ -27,7 +27,7 @@ public class strona_glowna {
         ModelAndView m_a_v = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Uzytkownik uzytkownik = serwis_uzytkownika.znajdzLogin(auth.getName());
-        m_a_v.addObject("powitanie", "Witaj " + uzytkownik.get_login());
+        m_a_v.addObject("powitanie", "Witaj " + uzytkownik.getLogin());
         m_a_v.addObject("ankiety", serwis_ankiet.pokaz_po_uzytkowniku(uzytkownik.getId()));
         m_a_v.setViewName("Glowna");
         return m_a_v;
