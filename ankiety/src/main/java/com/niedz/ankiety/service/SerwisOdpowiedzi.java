@@ -16,7 +16,7 @@ public class SerwisOdpowiedzi {
 
     public Odpowiedz odpowiedz(Odpowiedz odp){ return odpowiedzi.save(odp); }
 
-    public Iterable<Odpowiedz> znajdz_wszystkie_po_pytaniu(Integer pId){ return odpowiedzi.findAllBy_id_pytania(pId); }
+    public Iterable<Odpowiedz> znajdzWszystkiePoPytaniu(Integer pId){ return odpowiedzi.findAllByIdPytania(pId); }
 
-    public Optional<Odpowiedz> znajdz_po_id(Integer Id){ return odpowiedzi.findById(Id); }
+    public Optional<Odpowiedz> znajdzPoId(Integer Id){ return odpowiedzi.findById(Id); }
 }

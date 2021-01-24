@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface Pytania extends JpaRepository<Pytanie, Integer> {
 
-    Iterable<Pytanie> findAllBy_id_ankiety(Integer id_ankiety);
+    Iterable<Pytanie> findAllByIdAnkiety(Integer id_ankiety);
     Optional<Pytanie> findById(Integer Id);
 }

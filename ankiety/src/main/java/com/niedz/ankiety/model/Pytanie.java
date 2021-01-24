@@ -19,7 +19,7 @@ public class Pytanie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
-    private Integer id_ankiety;
+    private Integer idAnkiety;
 
     private String pytanie;
 
@@ -28,7 +28,7 @@ public class Pytanie {
     // gettery
     public Integer getId() { return Id; }
 
-    public Integer getIdAnkiety() { return id_ankiety; }
+    public Integer getIdAnkiety() { return idAnkiety; }
 
     public String getPytanie() { return pytanie; }
 

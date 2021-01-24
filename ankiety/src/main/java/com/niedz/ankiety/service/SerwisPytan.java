@@ -14,5 +14,5 @@ public class SerwisPytan {
 
     public void dodaj_pytanie(Pytanie pytanie){ pytania.save(pytanie); }
 
-    public Iterable<Pytanie> znajdz_wszystkie_z_ankiety(Integer pId){ return pytania.findAllBy_id_ankiety(pId); }
+    public Iterable<Pytanie> znajdz_wszystkie_z_ankiety(Integer pId){ return pytania.findAllByIdAnkiety(pId); }
 }
