@@ -12,28 +12,26 @@
 <body>
 <nav class="navbar bg-light fixed-top navbar-light">
     <h1 class="navbar-brand" style="font-family: 'Hachi Maru Pop'">System prostych ankiet - Niedzielski - 206074</h1>
-    <ul class="nav justify-content-center">
-        <li class="nav-item logout">
-            <form th:action="@{/logout}" method="get">
-                <input type="submit" class="btn btn-lg btn-block mt-2" value="Logout"/>
-            </form>
-        </li>
-    </ul>
 </nav>
 <div class="container">
-    <div class="row card_deck align-middle">
-        <div th:unless="${#lists.isEmpty(ankiety)}">
-        <div class="card" th:each="ankieta : ${ankiety}"">
-            <div class="card-header">
-                <p th:text="${polling.tytul}" > </p>
+    <div>
+        <form class="form-signin" th:object="${uzytkownik}" th:action="@{/rejestracja}" method="post" action="#">
+            <div class="form-group">
+                <label for="imie">Imie</label>
+                <input id="imie" type="text" class="form-control" placeholder="Podaj imię" th:field="${uzytkownik.login}" />
             </div>
-            <div class="card-body">
-                    <p th:text="${ankieta.id}"> </p>
-                <p th:text="${polling.opis}" > </p>
+            <div class="form-group">
+                <label for="Mail">Mail</label>
+                <input id="Mail" type="email" class="form-control" placeholder="Podaj adres e-mail" th:field="${uzytkownik.mail}" />
             </div>
-        </div>
-        </div>
+            <div class="form-group">
+                <label for="passwd">Haslo</label>
+                <input id="passwd" type="password" class="form-control" placeholder="Podaj hasło" th:field="${uzytkownik.password}" />
+            </div>
+            <input type="submit" class="btn btn-light" value="Utwórz Użytkownika">
+        </form>
     </div>
+</div>
 </div>
 
 </body>
