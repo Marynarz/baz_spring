@@ -40,7 +40,7 @@ public class logowanie {
         ModelAndView m_a_v = new ModelAndView();
 
         if(serwisUzytkownika.znajdzLogin(uzytkownik.getLogin()) != null)
-            b_result.rejectValue("username", null, null);
+            b_result.rejectValue("login", null, null);
         if(!b_result.hasErrors()){
             serwisUzytkownika.zapiszUzytkownika(uzytkownik);
             m_a_v.addObject("uzytkownik", new Uzytkownik());

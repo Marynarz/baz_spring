@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -17,11 +18,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    private SerwisDetaleUzytkownika detale_uzytkownika;
+    private SerwisDetaleUzytkownika detaleUzytkownika;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(detale_uzytkownika).passwordEncoder(bCryptPasswordEncoder);
+        auth.userDetailsService(detaleUzytkownika).passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
@@ -29,7 +30,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/logowanie").permitAll()
                 .antMatchers("/rejestracja").permitAll()
-                .antMatchers("/**").hasAnyAuthority("main", "admin", "user");
+                .antMatchers("/**").hasAnyAuthority("main", "admin", "user")
+                .antMatchers("/uzytkownik/**").hasAuthority("owner")
+                .anyRequest()
+                .authenticated()
+                .and().csrf().disable()
+                .formLogin()
+                .loginPage("/logowanie")
+                .failureUrl("/logowanie?error=true")
+                .defaultSuccessUrl("/")
+                .usernameParameter("login")
+                .passwordParameter("password")
+                .and().logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/wyloguj"))
+                .logoutSuccessUrl("/logowanie").and().exceptionHandling();
     }
 
     @Override
