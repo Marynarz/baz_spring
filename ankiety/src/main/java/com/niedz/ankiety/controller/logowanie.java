@@ -21,7 +21,7 @@ public class logowanie {
     @GetMapping(path="/logowanie")
     public ModelAndView logowanieUzytkownika(){
         ModelAndView m_a_v = new ModelAndView();
-        m_a_v.setViewName("login");
+        m_a_v.setViewName("logowanie");
         return m_a_v;
     }
 
@@ -55,7 +55,7 @@ public class logowanie {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Uzytkownik uzytkownik = serwisUzytkownika.znajdzLogin(auth.getName());
         m_a_v.addObject("witaj", "Czesc " + uzytkownik.getLogin());
-        m_a_v.setViewName("main_usr");
+        m_a_v.setViewName("main");
         return m_a_v;
     }
 }

@@ -15,22 +15,29 @@
 </nav>
 <div class="container-fluid justify-content-center">
     <div>
-        <form th:object="${uzytkownik}" th:action="@{/rejestracja}" method="post" action="#">
+        <form  th:action="@{/logowanie}" method="post">
             <div class="form-group">
-                <label for="imie">Imie</label>
-                <input id="imie" type="text" class="form-control" placeholder="Podaj imię" th:field="${uzytkownik.login}" />
+                <label for="imie">Login</label>
+                <input id="imie" type="text" class="form-control" placeholder="Podaj login" required=""/>
             </div>
             <div class="form-group">
-                <label for="Mail">Mail</label>
-                <input id="Mail" type="email" class="form-control" placeholder="Podaj adres e-mail" th:field="${uzytkownik.mail}" />
+                <label for="passwd">Hasło</label>
+                <input id="passwd" type="password" class="form-control" placeholder="Podaj hasło" required=""/>
             </div>
-            <div class="form-group">
-                <label for="passwd">Haslo</label>
-                <input id="passwd" type="password" class="form-control" placeholder="Podaj hasło" th:field="${uzytkownik.password}" />
-            </div>
-            <input type="submit" class="btn btn-light" value="Utwórz Użytkownika">
+            <input type="submit" class="btn btn-light" value="Zaloguj">
         </form>
     </div>
+    <div class="row justify-content-center" th:if="${param.error}">
+        <div class="alert alert-danger">
+            Jest błąd
+        </div>
+    </div>
+    <div class="row justify-content-center" th:if="${param.logout}">
+        <div class="alert alert-danger">
+            Już jesteś zalogowany
+        </div>
+    </div>
+
 </div>
 </div>
 

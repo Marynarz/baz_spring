@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="padding-top: 65px">
 <nav class="navbar bg-light fixed-top navbar-light">
     <h1 class="navbar-brand" style="font-family: 'Hachi Maru Pop'">System prostych ankiet - Niedzielski - 206074</h1>
     <ul class="nav justify-content-center">
@@ -20,16 +20,16 @@
         </li>
     </ul>
 </nav>
-<div class="container">
+<div class="container-fluid justify-content-center">
     <div class="row card_deck align-middle">
         <div th:unless="${#lists.isEmpty(ankiety)}">
         <div class="card" th:each="ankieta : ${ankiety}"">
             <div class="card-header">
-                <p th:text="${polling.tytul}" > </p>
+                <p th:text="${ankieta.tytul}" > </p>
             </div>
             <div class="card-body">
                     <p th:text="${ankieta.id}"> </p>
-                <p th:text="${polling.opis}" > </p>
+                <p th:text="${ankieta.opis}" > </p>
             </div>
         </div>
         </div>
