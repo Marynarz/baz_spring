@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -15,16 +16,16 @@ import javax.validation.Valid;
 @Controller
 public class logowanie {
     @Autowired
-    private SerwisUzytkownika serwis_uzytkownika;
+    private SerwisUzytkownika serwisUzytkownika;
 
-    @GetMapping(value="/logowanie")
-    public ModelAndView logowanie_uzytkownika(){
+    @GetMapping(path="/logowanie")
+    public ModelAndView logowanieUzytkownika(){
         ModelAndView m_a_v = new ModelAndView();
         m_a_v.setViewName("login");
         return m_a_v;
     }
 
-    @GetMapping(value="/rejestracja")
+    @GetMapping(path="/rejestracja")
     public ModelAndView rejestracja(){
         ModelAndView m_a_v = new ModelAndView();
         Uzytkownik uzytkownik = new Uzytkownik();
@@ -34,25 +35,25 @@ public class logowanie {
     }
 
 
-    @GetMapping(value="/rejestracja")
-    public ModelAndView dodaj_uzytkownika(@Valid Uzytkownik uzytkownik, BindingResult b_result){
+    @PostMapping(path="/rejestracja")
+    public ModelAndView dodajUzytkownika(@Valid Uzytkownik uzytkownik, BindingResult b_result){
         ModelAndView m_a_v = new ModelAndView();
 
-        if(serwis_uzytkownika.znajdzLogin(uzytkownik.getLogin()) != null)
+        if(serwisUzytkownika.znajdzLogin(uzytkownik.getLogin()) != null)
             b_result.rejectValue("username", null, null);
         if(!b_result.hasErrors()){
-            serwis_uzytkownika.zapiszUzytkownika(uzytkownik);
+            serwisUzytkownika.zapiszUzytkownika(uzytkownik);
             m_a_v.addObject("uzytkownik", new Uzytkownik());
         }
         m_a_v.setViewName("rejestracja");
         return m_a_v;
     }
 
-    @GetMapping(value="/uzytkownik/main")
-    public ModelAndView main_usr(){
+    @GetMapping(path="/uzytkownik/main")
+    public ModelAndView mainUsr(){
         ModelAndView m_a_v = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Uzytkownik uzytkownik = serwis_uzytkownika.znajdzLogin(auth.getName());
+        Uzytkownik uzytkownik = serwisUzytkownika.znajdzLogin(auth.getName());
         m_a_v.addObject("witaj", "Czesc " + uzytkownik.getLogin());
         m_a_v.setViewName("main_usr");
         return m_a_v;

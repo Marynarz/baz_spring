@@ -14,12 +14,12 @@ public class SerwisAnkiet {
     @Autowired
     public SerwisAnkiet(Ankiety ankiety){ this.amkiety = ankiety; }
 
-    public void stworz_ankiete(Ankietka ankieta){ amkiety.save(ankieta); }
+    public void stworzAnkiete(Ankietka ankieta){ amkiety.save(ankieta); }
 
-    public Iterable<Ankietka> pokaz_wszystkie(){ return amkiety.findAll(); }
+    public Iterable<Ankietka> pokazWszystkie(){ return amkiety.findAll(); }
 
-    public Iterable<Ankietka> pokaz_po_uzytkowniku(Integer uId){ return amkiety.findAllByTworca(uId); }
+    public Iterable<Ankietka> pokazPoUzytkowniku(Integer uId){ return amkiety.findAllByTworca(uId); }
 
-    public Optional<Ankietka> znajdz_po_numerze(Integer id){ return amkiety.findById(id); }
+    public Optional<Ankietka> znajdzPoNumerze(Integer id){ return amkiety.findById(id); }
 
 }

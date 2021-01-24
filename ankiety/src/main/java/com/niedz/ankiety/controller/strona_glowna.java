@@ -28,7 +28,7 @@ public class strona_glowna {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Uzytkownik uzytkownik = serwis_uzytkownika.znajdzLogin(auth.getName());
         m_a_v.addObject("powitanie", "Witaj " + uzytkownik.getLogin());
-        m_a_v.addObject("ankiety", serwis_ankiet.pokaz_po_uzytkowniku(uzytkownik.getId()));
+        m_a_v.addObject("ankiety", serwis_ankiet.pokazPoUzytkowniku(uzytkownik.getId()));
         m_a_v.setViewName("Glowna");
         return m_a_v;
     }
@@ -39,7 +39,7 @@ public class strona_glowna {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Uzytkownik uzytkownik = serwis_uzytkownika.znajdzLogin(auth.getName());
         m_a_v.addObject("uzytkownik",  uzytkownik);
-        m_a_v.addObject("ankiety", serwis_ankiet.pokaz_po_uzytkowniku(uzytkownik.getId()));
+        m_a_v.addObject("ankiety", serwis_ankiet.pokazPoUzytkowniku(uzytkownik.getId()));
         m_a_v.setViewName("opis_uzytkownika");
         return m_a_v;
     }

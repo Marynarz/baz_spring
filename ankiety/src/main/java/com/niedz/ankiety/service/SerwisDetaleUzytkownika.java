@@ -17,12 +17,12 @@ import java.util.Set;
 @Service
 public class SerwisDetaleUzytkownika implements UserDetailsService {
     @Autowired
-    private SerwisUzytkownika serwis_uzytkownika;
+    private SerwisUzytkownika serwisUzytkownika;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Uzytkownik uzytkownik = serwis_uzytkownika.znajdzLogin(s);
+        Uzytkownik uzytkownik = serwisUzytkownika.znajdzLogin(s);
 
         Set<GrantedAuthority> role = new HashSet<>();
         for(Rola rola: uzytkownik.getRola())

@@ -12,7 +12,7 @@ public class SerwisPytan {
     @Autowired
     public SerwisPytan(Pytania pytania){ this.pytania = pytania; }
 
-    public void dodaj_pytanie(Pytanie pytanie){ pytania.save(pytanie); }
+    public void dodajPytanie(Pytanie pytanie){ pytania.save(pytanie); }
 
-    public Iterable<Pytanie> znajdz_wszystkie_z_ankiety(Integer pId){ return pytania.findAllByIdAnkiety(pId); }
+    public Iterable<Pytanie> znajdzWszystkieZAnkiety(Integer pId){ return pytania.findAllByIdAnkiety(pId); }
 }
