@@ -29,7 +29,7 @@ public class strona_glowna {
         Uzytkownik uzytkownik = serwis_uzytkownika.znajdzLogin(auth.getName());
         m_a_v.addObject("powitanie", "Witaj " + uzytkownik.getLogin());
         m_a_v.addObject("ankiety", serwis_ankiet.pokazPoUzytkowniku(uzytkownik.getId()));
-        m_a_v.setViewName("Glowna");
+        m_a_v.setViewName("main");
         return m_a_v;
     }
 

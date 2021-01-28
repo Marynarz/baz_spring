@@ -15,7 +15,6 @@ import javax.persistence.*;
 public class Rola {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "id_roli")
     private Integer Id;
 
     private String rola;

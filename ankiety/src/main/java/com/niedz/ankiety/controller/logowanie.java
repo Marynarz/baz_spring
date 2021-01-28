@@ -1,5 +1,6 @@
 package com.niedz.ankiety.controller;
 
+import com.niedz.ankiety.model.Rola;
 import com.niedz.ankiety.model.Uzytkownik;
 import com.niedz.ankiety.service.SerwisUzytkownika;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
 
 @Controller
 public class logowanie {
@@ -42,6 +46,11 @@ public class logowanie {
         if(serwisUzytkownika.znajdzLogin(uzytkownik.getLogin()) != null)
             b_result.rejectValue("login", null, null);
         if(!b_result.hasErrors()){
+            Rola rola = new Rola();
+            rola.setRola("main");
+            Set<Rola> set = new HashSet<>();
+            set.add(rola);
+            uzytkownik.setRola(set);
             serwisUzytkownika.zapiszUzytkownika(uzytkownik);
             m_a_v.addObject("uzytkownik", new Uzytkownik());
         }
