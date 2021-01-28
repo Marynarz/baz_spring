@@ -23,6 +23,8 @@ public class SerwisDetaleUzytkownika implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Uzytkownik uzytkownik = serwisUzytkownika.znajdzLogin(s);
+        System.out.println(s);
+        System.out.println(uzytkownik);
 
         Set<GrantedAuthority> role = new HashSet<>();
         for(Rola rola: uzytkownik.getRola())

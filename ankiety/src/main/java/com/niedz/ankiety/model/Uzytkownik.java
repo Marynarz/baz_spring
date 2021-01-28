@@ -19,7 +19,6 @@ import java.util.Set;
 public class Uzytkownik {
     @javax.persistence.Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    @Column(name= "id_uzytkownika")
     private Integer Id;
 
     @NotEmpty(message = "Podaj nazwe uzytkownika")
@@ -35,7 +34,6 @@ public class Uzytkownik {
     private String password;
 
     @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(joinColumns = @JoinColumn(name = "id_uzytkownika"), inverseJoinColumns = @JoinColumn(name = "id_roli"))
     private Set<Rola> rola;
 
     private Boolean isActive;
