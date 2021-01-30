@@ -1,6 +1,9 @@
 package com.niedz.ankiety.controller;
 
+import com.niedz.ankiety.bean.Pytania;
 import com.niedz.ankiety.model.Ankietka;
+import com.niedz.ankiety.model.Odpowiedz;
+import com.niedz.ankiety.model.Pytanie;
 import com.niedz.ankiety.model.Uzytkownik;
 import com.niedz.ankiety.service.SerwisAnkiet;
 import com.niedz.ankiety.service.SerwisOdpowiedzi;
@@ -65,6 +68,18 @@ public class ankiety {
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Uzytkownik usr =serwisUzytkownika.znajdzLogin(auth.getName());
-        return "";
+        model.addAttribute("ankiety", serwisAnkiet.pokazPoUzytkowniku(usr.getId()));
+        model.addAttribute("ankieta", serwisAnkiet.znajdzPoNumerze(id).get());
+        Iterable<Pytanie> questionList = serwisPytan.znajdzWszystkieZAnkiety(id);
+        model.addAttribute("pytania", questionList);
+        Pytania pytania = new Pytania();
+        questionList.forEach(question -> {
+            Iterable<Odpowiedz> answerIterable = serwisOdpowiedzi.znajdzWszystkiePoPytaniu(question.getId());
+            answerIterable.forEach( answer -> {
+                pytania.dodajOdpowiedz(new com.niedz.ankiety.bean.Pytanie(question.getId(), answer.getOdpowiedz(), answer.getId()));
+            });
+        });
+        model.addAttribute("pytania", pytania);
+        return "ankieta";
     }
 }
