@@ -54,11 +54,12 @@ public class ankietyServ {
     }
 
     @GetMapping(path="/ankieta/nowa")
-    public String nowaAnkietaGET(Model model)
+    public ModelAndView nowaAnkietaGET()
     {
-        System.out.println("Ankiety!");
-        model.addAttribute("ankietka", new Ankietka());
-        return "nowa";
+        ModelAndView m_a_v = new ModelAndView();
+        m_a_v.addObject("ankietka", new Ankietka());
+        m_a_v.setViewName("nowa");
+        return m_a_v;
     }
     @PostMapping(path="/ankieta/nowa")
     public String nowaAnkietaPOST(@ModelAttribute Ankietka ankieta, Model model)
