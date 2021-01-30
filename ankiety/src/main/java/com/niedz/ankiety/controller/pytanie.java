@@ -39,7 +39,7 @@ public class pytanie {
         return "/question/add";
     }
 
-    @PostMapping(path = "/polling/add_question")
+    @PostMapping(path = "/ankiety/dodaj_pytanie")
     String AddQuestionFormPost(@ModelAttribute Pytanie question, @ModelAttribute Pytania answerForm, Model model) {
         serwisPytan.dodajPytanie(question);
 

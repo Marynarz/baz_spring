@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>System ankiet Niedzielski | 206074</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+</head>
+<body style="padding-top: 65px">
+<nav class="navbar bg-light fixed-top navbar-light">
+    <h1 class="navbar-brand" style="font-family: 'Hachi Maru Pop'">System prostych ankiet - Niedzielski - 206074</h1>
+    <ul class="nav justify-content-center">
+        <li class="nav-item logout">
+            <form th:action="@{/logout}" method="get">
+                <input type="submit" class="btn btn-lg btn-block mt-2" value="Logout"/>
+            </form>
+        </li>
+    </ul>
+</nav>
+<div class="container-fluid justify-content-center">
+    <div class="row card_deck align-middle">
+        <form action="#" th:action="@{'/ankieta/nowa'" th:object="${ankieta}" method="get">
+            <div class="form-group">
+                <label for="tytul">Tytuł</label>
+                <input type="text" class="form-control" id="tytul" th:field="${ankieta.tytul}">
+            </div>
+            <div class="form-group">
+                <label for="opis">Opis</label>
+                <textarea class="form-control" rows="5" id="opis" th:field="${ankieta.opis}"></textarea>
+            </div>
+            <input type="submit" class="btn btn-light" value="Stwórz">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
