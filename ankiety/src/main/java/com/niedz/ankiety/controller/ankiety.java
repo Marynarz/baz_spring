@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ankiety {
     @Autowired
     private SerwisAnkiet serwisAnkiet;
@@ -81,5 +84,28 @@ public class ankiety {
         });
         model.addAttribute("pytania", pytania);
         return "ankieta";
+    }
+
+    @GetMapping(value="/ankieta/statystyki/{id}")
+    public String getStats(@PathVariable("id") int id, Model model)
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Uzytkownik usr =serwisUzytkownika.znajdzLogin(auth.getName());
+        model.addAttribute("ankiety", serwisAnkiet.pokazPoUzytkowniku(usr.getId()));
+        model.addAttribute("ankieta", serwisAnkiet.znajdzPoNumerze(id).get());
+        Iterable<Pytanie> questionList = serwisPytan.znajdzWszystkieZAnkiety(id);
+        model.addAttribute("pytania", questionList);
+        Pytania pytania = new Pytania();
+        List<Odpowiedz> listaOdpowiedzi = new ArrayList<>();
+        questionList.forEach(question -> {
+            Iterable<Odpowiedz> answerIterable = serwisOdpowiedzi.znajdzWszystkiePoPytaniu(question.getId());
+            answerIterable.forEach( answer -> {
+                listaOdpowiedzi.add(answer);
+                pytania.dodajOdpowiedz(new com.niedz.ankiety.bean.Pytanie(question.getId(), answer.getOdpowiedz(), answer.getId()));
+            });
+        });
+        model.addAttribute("pytania", pytania);
+        model.addAttribute("listaOdpowiedzi", listaOdpowiedzi);
+        return "statystyki";
     }
 }

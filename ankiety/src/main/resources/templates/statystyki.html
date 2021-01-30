@@ -30,7 +30,7 @@
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <tbody>
-                                <tr th:each="odpowiedz : ${odpowiedzi}">
+                                <tr th:each="odpowiedz : ${listaOdpowiedzi}">
                                     <td th:if="${odpowiedz.getIdPytania() == pytanie.id}" th:text="${odpowiedz.odpowiedz}"></td>
                                     <td th:if="${odpowiedz.getIdPytania() == pytanie.id}" th:text="${odpowiedz.ilosc_odpowiedzi-1}"></td>
                                 </tr>
