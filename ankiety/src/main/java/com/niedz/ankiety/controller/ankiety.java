@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ankiety {
     @Autowired
@@ -107,5 +108,22 @@ public class ankiety {
         model.addAttribute("pytania", pytania);
         model.addAttribute("listaOdpowiedzi", listaOdpowiedzi);
         return "statystyki";
+    }
+
+    @GetMapping(path="/ankieta/zapisz")
+    public String zapiszAnkiete(@ModelAttribute Pytania pytania, Model model)
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Uzytkownik usr =serwisUzytkownika.znajdzLogin(auth.getName());
+        model.addAttribute("ankiety", serwisAnkiet.pokazPoUzytkowniku(usr.getId()));
+        pytania.odpowiedzi.forEach( form -> {
+            Optional<Odpowiedz> ans = serwisOdpowiedzi.znajdzPoId(form.getId());
+            if(ans.isPresent() && form.getZaznaczone() != null)
+            {
+                ans.get().addOdpowiedz();
+                serwisOdpowiedzi.odpowiedz(ans.get());
+            }
+        });
+        return "zapisane";
     }
 }
