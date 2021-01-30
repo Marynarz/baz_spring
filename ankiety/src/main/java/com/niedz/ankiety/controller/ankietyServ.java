@@ -12,6 +12,7 @@ import com.niedz.ankiety.service.SerwisUzytkownika;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,7 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ankiety {
+@Controller
+public class ankietyServ {
     @Autowired
     private SerwisAnkiet serwisAnkiet;
 
@@ -54,7 +56,8 @@ public class ankiety {
     @GetMapping(path="/ankieta/nowa")
     public String nowaAnkietaGET(Model model)
     {
-        model.addAttribute("ankieta", new Ankietka());
+        System.out.println("Ankiety!");
+        model.addAttribute("ankietka", new Ankietka());
         return "nowa";
     }
     @PostMapping(path="/ankieta/nowa")
