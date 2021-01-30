@@ -12,28 +12,33 @@
 <body style="padding-top: 65px">
 <nav class="navbar bg-light fixed-top navbar-light">
     <h1 class="navbar-brand" style="font-family: 'Hachi Maru Pop'">System prostych ankiet - Niedzielski - 206074</h1>
+    <ul class="nav justify-content-center">
+        <li class="nav-item logout">
+            <form th:action="@{/logout}" method="get">
+                <input type="submit" class="btn btn-lg btn-block mt-2" value="Logout"/>
+            </form>
+        </li>
+    </ul>
 </nav>
 <div class="container-fluid justify-content-center">
-    <div>
-        <form th:action="@{/logowanie}" method="post">
-            <div class="form-group">
-                <label for="login">Login</label>
-                <input id="login" name="login" type="text" class="form-control" placeholder="Podaj login" required=""/>
+    <div class="row align-middle">
+        <div th:unless="${#lists.isEmpty(pytania)}">
+            <form action="#" th:action="@{/ankieta/zapisz}" th:object="${odpowiedzi}" method="post">
+                <div class="form-group" th:each="pytanie : {$pytania}">
+                    <label th:text="${pytanie.pytanie}"></label>
+                    <label th:text="${pytanie.opis}"></label>
+                    <div th:each="odpowiedzElem elem: *{odpowiedzi}">
+                        <input type="hidden" id="id" th:field="*{odpowiedzi[__${elem.index}__].id}" />
+                        <label th:if="$odpowiedziElem.getNumerPytania() == pytanie.id" th:text="*{odpowiedzi[__${elem.index}__].opis}"></label>
+                        <input th:if="$odpowiedziElem.getNumerPytania() == pytanie.id" th:text="*{odpowiedzi[__${elem.index}__].zaznaczone}"
+                        type="radio" id="zaznaczone" value="1">
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-light" value="Zapisz" th:value="Save">
+            </form>
             </div>
-            <div class="form-group">
-                <label for="password">Hasło</label>
-                <input id="password" name="password" type="password" class="form-control" placeholder="Podaj hasło" required=""/>
-            </div>
-            <input type="submit" class="btn btn-light" value="Zaloguj">
-        </form>
-    </div>
-    <div class="row justify-content-center" th:if="${param.error}">
-        <div class="alert alert-danger">
-            Jest błąd
         </div>
     </div>
-
-</div>
 </div>
 
 </body>
