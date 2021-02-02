@@ -110,7 +110,7 @@ public class ankietyServ {
                 pytania.dodajOdpowiedz(new com.niedz.ankiety.bean.Pytanie(question.getId(), answer.getOdpowiedz(), answer.getId()));
             });
         });
-        model.addAttribute("pytania", pytania);
+        model.addAttribute("odpowiedzi", pytania);
         model.addAttribute("listaOdpowiedzi", listaOdpowiedzi);
         return "statystyki";
     }
