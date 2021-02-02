@@ -24,7 +24,7 @@
     <div class="row align-middle">
         <div th:unless="${#lists.isEmpty(pytania)}">
             <form action="#" th:action="@{/ankieta/zapisz}" th:object="${odpowiedzi}" method="post">
-                <div class="form-group" th:each="pytanie : ${$pytania}">
+                <div class="form-group" th:each="pytanie : ${pytania}">
                     <label th:text="${pytanie.pytanie}"></label>
                     <label th:text="${pytanie.opis}"></label>
                     <div th:each="odpowiedzElem elem: *{odpowiedzi}">
