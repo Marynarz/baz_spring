@@ -45,6 +45,7 @@ public class ankietyServ {
         ModelAndView m_a_v = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Uzytkownik usr = serwisUzytkownika.znajdzLogin(auth.getName());
+        System.out.println(serwisUzytkownika.wszyscyUzytkownicy());
 
         m_a_v.addObject("uzytkownicy", serwisUzytkownika.wszyscyUzytkownicy());
         m_a_v.addObject("ankiety_usytkownika", serwisAnkiet.pokazPoUzytkowniku(usr.getId()));
@@ -87,7 +88,7 @@ public class ankietyServ {
                 pytania.dodajOdpowiedz(new com.niedz.ankiety.bean.Pytanie(question.getId(), answer.getOdpowiedz(), answer.getId()));
             });
         });
-        model.addAttribute("pytania", pytania);
+        model.addAttribute("odpowiedzi", pytania);
         return "ankieta";
     }
 

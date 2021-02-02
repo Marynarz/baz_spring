@@ -31,7 +31,7 @@
                     <p th:text="${ankieta.id}"> </p>
                     <p th:text="${ankieta.opis}" > </p>
                     <p th:text="${ankieta.tworca}"></p>
-                    <p th:each="uzytkownik: ${uzytkownicy}" th:if="${uzytkownik.id == ankieta.tworca}" th:text="${uzytkonik.login}"></p>
+                    <p th:each="uzytkownik: ${uzytkownicy}" th:if="${uzytkownik.id == ankieta.tworca}" th:text="${uzytkownik.login}"></p>
                 </div>
                 <div class="card-footer">
                     <a class="text-muted" th:text="${ankieta.tytul}" th:href="@{'/ankiety/stats/'+ ${ankieta.id}}"></a>
