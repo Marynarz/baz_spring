@@ -25,7 +25,7 @@ public class pytanie {
     @Autowired
     private SerwisOdpowiedzi serwisOdpowiedzi;
 
-    @GetMapping(path = "/glosowanie/{id}/dodaj_pytanie")
+    @GetMapping(path = "/ankieta/{id}/dodaj_pytanie")
     String addQuestionForm(@PathVariable("id") int id, Model model) {
         model.addAttribute("polling", serwisAnkiet.znajdzPoNumerze(id));
         Pytanie question = new Pytanie();
@@ -39,7 +39,7 @@ public class pytanie {
         return "/question/add";
     }
 
-    @PostMapping(path = "/ankiety/dodaj_pytanie")
+    @PostMapping(path = "/ankieta/dodaj_pytanie")
     String AddQuestionFormPost(@ModelAttribute Pytanie question, @ModelAttribute Pytania answerForm, Model model) {
         serwisPytan.dodajPytanie(question);
 
