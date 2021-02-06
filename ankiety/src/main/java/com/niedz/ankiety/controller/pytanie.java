@@ -27,16 +27,16 @@ public class pytanie {
 
     @GetMapping(path = "/ankieta/{id}/dodaj_pytanie")
     String addQuestionForm(@PathVariable("id") int id, Model model) {
-        model.addAttribute("polling", serwisAnkiet.znajdzPoNumerze(id));
+        model.addAttribute("ankieta", serwisAnkiet.znajdzPoNumerze(id));
         Pytanie question = new Pytanie();
         question.setId(id);
-        model.addAttribute("question", question);
+        model.addAttribute("pytanie", question);
         Pytania answerForm = new Pytania();
         for (int i = 0; i < 4; i++) {
             answerForm.dodajOdpowiedz(new com.niedz.ankiety.bean.Pytanie());
         }
-        model.addAttribute("answerForm", answerForm);
-        return "/question/add";
+        model.addAttribute("pytania", answerForm);
+        return "dodaj_pytanie";
     }
 
     @PostMapping(path = "/ankieta/dodaj_pytanie")
@@ -51,7 +51,7 @@ public class pytanie {
             answer.setIlosc_odpowiedzi(1);
             serwisOdpowiedzi.odpowiedz(answer);
         });
-        return "/dashboard";
+        return "main";
     }
 
 

@@ -18,28 +18,25 @@
                 <input type="submit" class="btn btn-lg btn-block mt-2" value="Logout"/>
             </form>
         </li>
-        <li class="nav-item">
-        </li>
     </ul>
 </nav>
 <div class="container-fluid justify-content-center">
-    <div class="row align-middle">
-        <div th:unless="${#lists.isEmpty(pytania)}">
-            <form action="#" th:action="@{/ankieta/zapisz}" th:object="${odpowiedzi}" method="post">
-                <div class="form-group" th:each="pytanie : ${pytania}">
-                    <label th:text="${pytanie.pytanie}"></label>
-                    <label th:text="${pytanie.opis}"></label>
-                    <div th:each="odpowiedzElem elem: *{odpowiedzi}">
-                        <input type="hidden" id="id" th:field="*{odpowiedzi[__${elem.index}__].id}" />
-                        <label th:if="$odpowiedziElem.getNumerPytania() == pytanie.id" th:text="*{odpowiedzi[__${elem.index}__].opis}"></label>
-                        <input th:if="$odpowiedziElem.getNumerPytania() == pytanie.id" th:text="*{odpowiedzi[__${elem.index}__].zaznaczone}"
-                        type="radio" id="zaznaczone" value="1">
-                    </div>
-                </div>
-                <input type="submit" class="btn btn-light" value="Zapisz" th:value="Save">
-            </form>
+    <div class="row card_deck align-middle" th:unless="${#lists.isEmpty(pytania)}">
+        <form action="#" th:action="@{/ankieta/dodaj_pytanie}" th:object="${ankieta}" method="post">
+            <div th:object="${pytanie}">
+            <div class="form-group">
+                <label for="tytul">Tytuł</label>
+                <input type="text" class="form-control" id="tytul" th:field="${pytanie.pytanie}">
             </div>
-        </div>
+            <div class="form-group">
+                <label for="opis">Opis</label>
+                <textarea class="form-control" rows="5" id="opis" th:field="${pytanie.opis}"></textarea>
+            </div>
+                <input type="hidden" class="form-control" th:field="${pytanie.idAnkiety}">
+                <input type="hidden" class="form-control" th:field="${pytanie.id}">
+                <input type="submit" class="btn btn-light" value="Stwórz">
+            </div>
+        </form>
     </div>
 </div>
 
