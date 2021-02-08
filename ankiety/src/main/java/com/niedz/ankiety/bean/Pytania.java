@@ -10,6 +10,8 @@ public class Pytania {
 
     public void dodajOdpowiedz(Pytanie odpowiedz){ this.odpowiedzi.add(odpowiedz); }
 
+    public void setOdpowiedzi(List<Pytanie> odpowiedzi) { this.odpowiedzi = odpowiedzi; }
+
     public List<Pytanie> pokazOdpowiedzi(){ return odpowiedzi; }
 
 }
