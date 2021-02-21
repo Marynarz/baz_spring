@@ -1,6 +1,7 @@
 package com.niedz.ankiety.controller;
 
-import com.niedz.ankiety.bean.Pytania;
+import com.niedz.ankiety.bean.AnswerForm;
+import com.niedz.ankiety.bean.AnswerFormItem;
 import com.niedz.ankiety.model.Ankietka;
 import com.niedz.ankiety.model.Odpowiedz;
 import com.niedz.ankiety.model.Pytanie;
@@ -81,11 +82,11 @@ public class ankietyServ {
         model.addAttribute("ankieta", serwisAnkiet.znajdzPoNumerze(id).get());
         Iterable<Pytanie> questionList = serwisPytan.znajdzWszystkieZAnkiety(id);
         model.addAttribute("pytania", questionList);
-        Pytania pytania = new Pytania();
+        AnswerForm pytania = new AnswerForm();
         questionList.forEach(question -> {
             Iterable<Odpowiedz> answerIterable = serwisOdpowiedzi.znajdzWszystkiePoPytaniu(question.getId());
             answerIterable.forEach( answer -> {
-                pytania.dodajOdpowiedz(new com.niedz.ankiety.bean.Pytanie(question.getId(), answer.getOdpowiedz(), answer.getId()));
+                pytania.addAnswer(new AnswerFormItem(question.getId(), answer.getId(), answer.getOdpowiedz()));
             });
         });
         model.addAttribute("odpowiedzi", pytania);
@@ -101,13 +102,13 @@ public class ankietyServ {
         model.addAttribute("ankieta", serwisAnkiet.znajdzPoNumerze(id).get());
         Iterable<Pytanie> questionList = serwisPytan.znajdzWszystkieZAnkiety(id);
         model.addAttribute("pytania", questionList);
-        Pytania pytania = new Pytania();
+        AnswerForm pytania = new AnswerForm();
         List<Odpowiedz> listaOdpowiedzi = new ArrayList<>();
         questionList.forEach(question -> {
             Iterable<Odpowiedz> answerIterable = serwisOdpowiedzi.znajdzWszystkiePoPytaniu(question.getId());
             answerIterable.forEach( answer -> {
                 listaOdpowiedzi.add(answer);
-                pytania.dodajOdpowiedz(new com.niedz.ankiety.bean.Pytanie(question.getId(), answer.getOdpowiedz(), answer.getId()));
+                pytania.addAnswer(new AnswerFormItem(question.getId(), answer.getId(), answer.getOdpowiedz()));
             });
         });
         model.addAttribute("odpowiedzi", pytania);
@@ -116,14 +117,14 @@ public class ankietyServ {
     }
 
     @GetMapping(path="/ankieta/zapisz")
-    public String zapiszAnkiete(@ModelAttribute Pytania pytania, Model model)
+    public String zapiszAnkiete(@ModelAttribute AnswerForm pytania, Model model)
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Uzytkownik usr =serwisUzytkownika.znajdzLogin(auth.getName());
         model.addAttribute("ankiety", serwisAnkiet.pokazPoUzytkowniku(usr.getId()));
-        pytania.odpowiedzi.forEach( form -> {
+        pytania.answers.forEach( form -> {
             Optional<Odpowiedz> ans = serwisOdpowiedzi.znajdzPoId(form.getId());
-            if(ans.isPresent() && form.getZaznaczone() != null)
+            if(ans.isPresent() && form.getChecked() != null)
             {
                 ans.get().addOdpowiedz();
                 serwisOdpowiedzi.odpowiedz(ans.get());

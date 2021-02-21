@@ -1,6 +1,7 @@
 package com.niedz.ankiety.controller;
 
-import com.niedz.ankiety.bean.Pytania;
+import com.niedz.ankiety.bean.AnswerForm;
+import com.niedz.ankiety.bean.AnswerFormItem;
 import com.niedz.ankiety.model.Odpowiedz;
 import com.niedz.ankiety.model.Pytanie;
 import com.niedz.ankiety.service.SerwisAnkiet;
@@ -31,24 +32,24 @@ public class pytanie {
         Pytanie question = new Pytanie();
         question.setIdAnkiety(id);
         model.addAttribute("question", question);
-        Pytania answerForm = new Pytania();
+        AnswerForm answerForm = new AnswerForm();
         for (int i = 0; i < 4; i++) {
-            answerForm.dodajOdpowiedz(new com.niedz.ankiety.bean.Pytanie());
+            answerForm.addAnswer(new AnswerFormItem());
         }
         model.addAttribute("answerForm", answerForm);
         return "dodaj_pytanie";
     }
 
     @PostMapping(path = "/ankieta/dodaj_pytanie")
-    String AddQuestionFormPost(@ModelAttribute Pytanie question, @ModelAttribute Pytania answerForm, Model model) {
+    String AddQuestionFormPost(@ModelAttribute Pytanie question, @ModelAttribute AnswerForm answerForm, Model model) {
         serwisPytan.dodajPytanie(question);
 
-        answerForm.odpowiedzi.forEach(answerFormItem -> {
+        answerForm.answers.forEach(answerFormItem -> {
             Odpowiedz answer = new Odpowiedz();
             answer.setIdPytania(question.getId());
-            answer.setOdpowiedz(answerFormItem.opis);
+            answer.setOdpowiedz(answerFormItem.text);
             answer.zerujIloscOdpowiedzi();
-            answer.setIlosc_odpowiedzi(1);
+            answer.addOdpowiedz();
             serwisOdpowiedzi.odpowiedz(answer);
         });
         return "main";

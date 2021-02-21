@@ -21,28 +21,28 @@
     </ul>
 </nav>
 <div class="container-fluid justify-content-center">
-        <form action="#" th:action="@{/ankieta/dodaj_pytanie}" th:object="${polling}" method="post">
-            <div th:object="${question}">
-                <div th:object="${answerForm}">
-                    <h3 class="h2 mb-3 font-weight-normal">Question:</h3>
-                    <label class="w-100" th:text="${question.pytanie}"></label>
-                    <input class="form-control" th:field="${question.pytanie}">
-                    <input type="hidden" class="form-control" th:field="${question.idAnkiety}">
-                    <input type="hidden" class="form-control" th:field="${question.Id}">
-                    <h5 class="h2 mb-3 font-weight-normal">Answer:</h5>
-                    <div th:each="com.niedz.ankiety.bean.Pytanie, itemStat : *{odpowiedzi}">
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <input type="hidden" class="form-control" th:field="*{odpowiedzi[__${itemStat.index}__].Id}">
-                                <input class="form-control" th:field="*{odpowiedzi[__${itemStat.index}__].opis}">
-                            </div>
+    <form action="#" th:action="@{/ankieta/dodaj_pytanie}" th:object="${polling}" method="post">
+        <div th:object="${question}">
+            <div th:object="${answerForm}">
+                <h3 class="h2 mb-3 font-weight-normal">Question:</h3>
+                <label class="w-100" th:text="${question.pytanie}"></label>
+                <input class="form-control" th:field="${question.pytanie}">
+                <input type="hidden" class="form-control" th:field="${question.idAnkiety}">
+                <input type="hidden" class="form-control" th:field="${question.id}">
+                <h5 class="h2 mb-3 font-weight-normal">Answer:</h5>
+                <div th:each="AnswerFormItem, itemStat : *{answers}">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <input type="hidden" class="form-control" th:field="*{answers[__${itemStat.index}__].id}">
+                            <input class="form-control" th:field="*{answers[__${itemStat.index}__].text}">
                         </div>
                     </div>
-                    <input class="btn btn-lg mt-2" type="submit" id="submitButton" th:value="Save">
-                    <input class="btn btn-lg mt-2 delete" type="submit" id="deleteButton" th:value="Delete">
                 </div>
+                <input class="btn btn-lg mt-2" type="submit" id="submitButton" th:value="Save">
+                <input class="btn btn-lg mt-2 delete" type="submit" id="deleteButton" th:value="Delete">
             </div>
-        </form>
+        </div>
+    </form>
 </div>
 
 </body>
