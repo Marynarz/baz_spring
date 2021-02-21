@@ -23,8 +23,6 @@ public class Pytanie {
 
     private String pytanie;
 
-    private String opis;
-
     // gettery
     public Integer getId() { return Id; }
 
@@ -32,10 +30,16 @@ public class Pytanie {
 
     public String getPytanie() { return pytanie; }
 
-    public String getOpis() { return opis; }
 
     // settery
     public void setPytanie(String pytanie) { this.pytanie = pytanie; }
 
-    public void setOpis(String opis) { this.opis = opis; }
+    public void setId(Integer id) {
+        this.Id = id;
+    }
+
+    public void setPolling(Integer polling) {
+        this.idAnkiety = polling;
+    }
+
 }

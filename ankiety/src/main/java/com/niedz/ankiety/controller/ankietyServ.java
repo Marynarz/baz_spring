@@ -74,22 +74,21 @@ public class ankietyServ {
     }
 
     @GetMapping(path="/ankieta/{id}")
-    public String getAnkieta(@PathVariable("id") int id, Model model)
-    {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Uzytkownik usr =serwisUzytkownika.znajdzLogin(auth.getName());
-        model.addAttribute("ankiety", serwisAnkiet.pokazPoUzytkowniku(usr.getId()));
-        model.addAttribute("ankieta", serwisAnkiet.znajdzPoNumerze(id).get());
+    public String getPollingForm(@PathVariable("id") int id, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Uzytkownik user = serwisUzytkownika.znajdzLogin(authentication.getName());
+        model.addAttribute("pollingList", serwisAnkiet.pokazPoUzytkowniku(user.getId()));
+        model.addAttribute("polling", serwisAnkiet.znajdzPoNumerze(id).get());
         Iterable<Pytanie> questionList = serwisPytan.znajdzWszystkieZAnkiety(id);
-        model.addAttribute("pytania", questionList);
-        AnswerForm pytania = new AnswerForm();
+        model.addAttribute("questionList", questionList);
+        AnswerForm answerForm = new AnswerForm();
         questionList.forEach(question -> {
             Iterable<Odpowiedz> answerIterable = serwisOdpowiedzi.znajdzWszystkiePoPytaniu(question.getId());
             answerIterable.forEach( answer -> {
-                pytania.addAnswer(new AnswerFormItem(question.getId(), answer.getId(), answer.getOdpowiedz()));
+                answerForm.addAnswer(new AnswerFormItem(question.getId(), answer.getId(), answer.getOdpowiedz()));
             });
         });
-        model.addAttribute("odpowiedzi", pytania);
+        model.addAttribute("answerForm", answerForm);
         return "ankieta";
     }
 
@@ -116,7 +115,7 @@ public class ankietyServ {
         return "statystyki";
     }
 
-    @GetMapping(path="/ankieta/zapisz")
+    @PostMapping(path="/ankieta/zapisz")
     public String zapiszAnkiete(@ModelAttribute AnswerForm pytania, Model model)
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

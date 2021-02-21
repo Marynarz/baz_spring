@@ -24,21 +24,27 @@
 </nav>
 <div class="container-fluid justify-content-center">
     <div class="row align-middle">
-        <div th:unless="${#lists.isEmpty(pytania)}">
-            <form action="#" th:action="@{/ankieta/zapisz}" th:object="${odpowiedzi}" method="post">
-                <div class="form-group" th:each="pytanie : ${pytania}">
-                    <label th:text="${pytanie.pytanie}"></label>
-                    <label th:text="${pytanie.opis}"></label>
-                    <div th:each="odpowiedzElem elem: *{odpowiedzi}">
-                        <input type="hidden" id="id" th:field="*{odpowiedzi[__${elem.index}__].id}" />
-                        <label th:if="$odpowiedziElem.getNumerPytania() == pytanie.id" th:text="*{odpowiedzi[__${elem.index}__].opis}"></label>
-                        <input th:if="$odpowiedziElem.getNumerPytania() == pytanie.id" th:text="*{odpowiedzi[__${elem.index}__].zaznaczone}"
-                        type="radio" id="zaznaczone" value="1">
+        <div class="card-deck" th:unless="${#lists.isEmpty(questionList)}">
+            <form class="card" action="#" th:action="@{/ankieta/zapisz}" th:object="${answerForm}" method="post">
+                <fieldset>
+                    <div th:each="question : ${questionList}">
+                        <h3 class="h2 mb-3 font-weight-normal">Question:</h3>
+                        <label class="w-100" th:text="${question.pytanie}"></label>
+                        <h5 class="h2 mb-3 font-weight-normal">Answer:</h5>
+                        <div th:each="AnswerFormItem, itemStat : *{answers}">
+                            <label th:if="${AnswerFormItem.getQuestionId() == question.id}"
+                                   th:text="*{answers[__${itemStat.index}__].text}"></label>
+                            <input type="hidden" th:if="${AnswerFormItem.getQuestionId() == question.id}" id="text"
+                                   th:field="*{answers[__${itemStat.index}__].text}">
+                            <input th:if="${AnswerFormItem.getQuestionId() == question.id}" type="radio"
+                                   id="isChecked" value="1" th:field="*{answers[__${itemStat.index}__].isChecked}"/>
+                            <input type="hidden" id="id" th:field="*{answers[__${itemStat.index}__].id}">
+                        </div>
                     </div>
-                </div>
-                <input type="submit" class="btn btn-light" value="Zapisz" th:value="Save">
+                    <input class="btn btn-lg mt-2" type="submit" id="submitButton" th:value="Save">
+                    <input class="btn btn-lg mt-2 delete" type="submit" id="deleteButton" th:value="Delete">
+                </fieldset>
             </form>
-            </div>
         </div>
     </div>
 </div>

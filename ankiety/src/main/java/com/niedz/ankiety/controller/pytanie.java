@@ -30,7 +30,7 @@ public class pytanie {
     String addQuestionForm(@PathVariable("id") int id, Model model) {
         model.addAttribute("polling", serwisAnkiet.znajdzPoNumerze(id));
         Pytanie question = new Pytanie();
-        question.setIdAnkiety(id);
+        question.setPolling(id);
         model.addAttribute("question", question);
         AnswerForm answerForm = new AnswerForm();
         for (int i = 0; i < 4; i++) {
