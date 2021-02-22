@@ -26,8 +26,8 @@
     </ul>
 </nav>
 <div class="container-fluid justify-content-center" style="padding: 30px">
-    <div class="row align-middle">
-        <div class="card-deck" th:unless="${#lists.isEmpty(ankiety)}">
+    <div class="container-fluid">
+        <div class="card-deck row" th:unless="${#lists.isEmpty(ankiety)}">
         <div class="card bg-light" th:each="ankieta : ${ankiety}">
             <div class="card-header">
                 <p th:text="${ankieta.tytul}" > </p>

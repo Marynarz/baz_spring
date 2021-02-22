@@ -13,6 +13,16 @@
 <nav class="navbar bg-light fixed-top navbar-light">
     <h1 class="navbar-brand" style="font-family: 'Hachi Maru Pop'">System prostych ankiet - Niedzielski - 206074</h1>
     <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <form th:action="@{/}" method="get">
+                <input type="submit" class="btn btn-lg btn-block mt-2" value="Strona główna"/>
+            </form>
+        </li>
+        <li class="nav-item">
+            <form th:action="@{'/ankieta/' + ${ankId} + '/dodaj_pytanie'}"  method="get">
+                <input type="submit" class="btn btn-lg btn-block mt-2" value="Dodaj pytanie"/>
+            </form>
+        </li>
         <li class="nav-item logout">
             <form th:action="@{/logout}" method="get">
                 <input type="submit" class="btn btn-lg btn-block mt-2" value="Logout"/>

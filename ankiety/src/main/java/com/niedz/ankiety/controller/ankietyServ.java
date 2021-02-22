@@ -70,13 +70,14 @@ public class ankietyServ {
         Uzytkownik usr =serwisUzytkownika.znajdzLogin(auth.getName());
         ankieta.setTworca(usr.getId());
         serwisAnkiet.stworzAnkiete(ankieta);
-        return "main";
+        return "redirect:/";
     }
 
     @GetMapping(path="/ankieta/{id}")
     public String getPollingForm(@PathVariable("id") int id, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Uzytkownik user = serwisUzytkownika.znajdzLogin(authentication.getName());
+        model.addAttribute("ankId", id);
         model.addAttribute("pollingList", serwisAnkiet.pokazPoUzytkowniku(user.getId()));
         model.addAttribute("polling", serwisAnkiet.znajdzPoNumerze(id).get());
         Iterable<Pytanie> questionList = serwisPytan.znajdzWszystkieZAnkiety(id);
