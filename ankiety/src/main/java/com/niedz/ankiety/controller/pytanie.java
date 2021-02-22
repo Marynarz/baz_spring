@@ -43,6 +43,7 @@ public class pytanie {
     @PostMapping(path = "/ankieta/dodaj_pytanie")
     String AddQuestionFormPost(@ModelAttribute Pytanie question, @ModelAttribute AnswerForm answerForm, Model model) {
         serwisPytan.dodajPytanie(question);
+        System.out.println(question.getPytanko());
 
         answerForm.answers.forEach(answerFormItem -> {
             Odpowiedz answer = new Odpowiedz();
@@ -52,6 +53,6 @@ public class pytanie {
             answer.addOdpowiedz();
             serwisOdpowiedzi.odpowiedz(answer);
         });
-        return "main";
+        return "redirect:/";
     }
 }

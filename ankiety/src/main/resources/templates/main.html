@@ -33,12 +33,15 @@
                 <p th:text="${ankieta.tytul}" > </p>
             </div>
             <div class="card-body">
-                <p th:text="${ankieta.id}"> </p>
-                <p th:text="${ankieta.opis}" > </p>
+                <p class="text-center" th:text="${ankieta.id}"> </p>
+                <p class="text-center" th:text="${ankieta.opis}" > </p>
+                <form th:action="@{'/ankieta/' + ${ankieta.id} + '/dodaj_pytanie'}"  method="get">
+                    <input type="submit" class="btn btn-lg btn-block mt-2" value="Dodaj pytanie"/>
+                </form>
             </div>
-            <div class="card-footer">
-                <a th:href="@{'/ankieta/'+ ${ankieta.id}}">Przejdź</a>
-            </div>
+            <form th:action="@{'/ankieta/statystyki/' + ${ankieta.id}}" method="get">
+                <input type="submit" class="btn btn-lg btn-block mt-2" value="Statystyki"/>
+            </form>
         </div>
         </div>
     </div>

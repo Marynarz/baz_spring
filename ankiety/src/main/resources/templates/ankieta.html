@@ -39,7 +39,7 @@
                 <fieldset>
                     <div th:each="question : ${questionList}">
                         <h3 class="h2 mb-3 font-weight-normal">Question:</h3>
-                        <label class="w-100" th:text="${question.pytanie}"></label>
+                        <label class="w-100" th:text="${question.pytanko}"></label>
                         <h5 class="h2 mb-3 font-weight-normal">Answer:</h5>
                         <div th:each="AnswerFormItem, itemStat : *{answers}">
                             <label th:if="${AnswerFormItem.getQuestionId() == question.id}"

@@ -21,18 +21,18 @@ public class Pytanie {
 
     private Integer idAnkiety;
 
-    private String pytanie;
+    private String pytanko;
 
     // gettery
     public Integer getId() { return Id; }
 
     public Integer getIdAnkiety() { return idAnkiety; }
 
-    public String getPytanie() { return pytanie; }
+    public String getPytanko() { return pytanko; }
 
 
     // settery
-    public void setPytanie(String pytanie) { this.pytanie = pytanie; }
+    public void setPytanko(String pytanie) { this.pytanko = pytanie; }
 
     public void setId(Integer id) {
         this.Id = id;

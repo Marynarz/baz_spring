@@ -29,12 +29,11 @@
     <form action="#" th:action="@{/ankieta/dodaj_pytanie}" th:object="${polling}" method="post">
         <div th:object="${question}">
             <div th:object="${answerForm}">
-                <h3 class="h2 mb-3 font-weight-normal">Question:</h3>
-                <label class="w-100" th:text="${question.pytanie}"></label>
-                <input class="form-control" th:field="${question.pytanie}">
+                <h3 class="h2 mb-3 font-weight-normal">Pytanie:</h3>
+                <input class="form-control" th:field="${question.pytanko}">
                 <input type="hidden" class="form-control" th:field="${question.idAnkiety}">
                 <input type="hidden" class="form-control" th:field="${question.id}">
-                <h5 class="h2 mb-3 font-weight-normal">Answer:</h5>
+                <h5 class="h2 mb-3 font-weight-normal">Odpowiedzi:</h5>
                 <div th:each="AnswerFormItem, itemStat : *{answers}">
                     <div class="form-row">
                         <div class="form-group col-md-4">
@@ -43,8 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <input class="btn btn-lg mt-2" type="submit" id="submitButton" th:value="Save">
-                <input class="btn btn-lg mt-2 delete" type="submit" id="deleteButton" th:value="Delete">
+                <input class="btn btn-lg mt-2" type="submit" id="submitButton" th:value="Zapisz">
             </div>
         </div>
     </form>

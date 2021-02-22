@@ -20,10 +20,10 @@ Aplikacja do tworzenia prostych ankiet oraz glosowania, użytkownik ma możliwo�
 - [x] Rejestracja
 - [x] Logowanie
 - [x] Wylogowanie
-- [ ] Dodwanie ankiety
-- [ ] Dodawanie pytania
+- [x] Dodwanie ankiety
+- [x] Dodawanie pytania
 - [ ] Glosowanie
-- [ ] Wyswietlanie statystyk
+- [x] Wyswietlanie statystyk
     
 ## Baza danych:
 - instalacja: `sudo apt install mysql-server`
