@@ -16,6 +16,15 @@ Aplikacja do tworzenia prostych ankiet oraz glosowania, użytkownik ma możliwo�
     * Dodawanie pytan
     * Podglad statystyk odpowiedzi
     
+## Checklist
+- [x] Rejestracja
+- [x] Logowanie
+- [x] Wylogowanie
+- [ ] Dodwanie ankiety
+- [ ] Dodawanie pytania
+- [ ] Glosowanie
+- [ ] Wyswietlanie statystyk
+    
 ## Baza danych:
 - instalacja: `sudo apt install mysql-server`
 - uruchomienie konfiguracji: `sudo mysql_secure_installation`
