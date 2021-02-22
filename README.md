@@ -22,7 +22,7 @@ Aplikacja do tworzenia prostych ankiet oraz glosowania, użytkownik ma możliwo�
 - [x] Wylogowanie
 - [x] Dodwanie ankiety
 - [x] Dodawanie pytania
-- [ ] Glosowanie
+- [x] Glosowanie
 - [x] Wyswietlanie statystyk
     
 ## Baza danych:
